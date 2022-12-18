@@ -1,5 +1,5 @@
 const getForecast = (address, cb) => {
-    fetch(`http://localhost:3004/weather?address=${address}`)
+    fetch(`/weather?address=${address}`)
         .then((res) => {
             res.json().then((data) => {
                 cb(data);
