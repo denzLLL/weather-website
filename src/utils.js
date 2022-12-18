@@ -1,14 +1,5 @@
 import chalk from 'chalk';
 import got from 'got';
-import * as dotenv from 'dotenv';
-dotenv.config();
-
-// import {fileURLToPath} from 'url';
-// import path from "path";
-// const __filename = fileURLToPath(import.meta.url);
-// console.log('__filename: ', __filename);
-// const __dirname = path.dirname(__filename);
-// console.log('__dirname: ', __dirname);
 
 const wrapFu = function ({isErr}) {
     let isError = isErr;
@@ -55,6 +46,7 @@ export const utils = {
 }
 
 export const getLatLongByUrl = async (address) => {
+
     try {
         const coordinateURL = `https://api.maptiler.com/geocoding/
             ${encodeURIComponent(address)}.json?key=${process.env.MAPTILER_KEY}&language=ru`

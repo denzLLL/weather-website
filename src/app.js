@@ -5,10 +5,14 @@ import {getLatLongByUrl, getWeatherByUrl, utils as u} from './utils.js';
 import {fileURLToPath} from 'url';
 import path from 'path';
 import hbs from 'hbs';
-
+import * as dotenv from 'dotenv';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+if (process.env.NODE_ENV !== 'dev') {
+    dotenv.config({path: path.join(__dirname, '.env')});
+}
 
 u.log('__dirname', __dirname); // directory where current script lives
 u.log('path.join(__dirname, \'..\')', path.join(__dirname, '..'));
@@ -54,6 +58,7 @@ app.get('/weather', async (req, res) => {
             error: coordinates?.error ? coordinates?.error : `We did not find coordinate for ${req.query.address}`
         });
     }
+
     const [long, lat] = coordinates,
         currentConditions = await getWeatherByUrl({lat, long});
     if (!currentConditions || currentConditions.hasOwnProperty('error')) {
