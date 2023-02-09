@@ -1,5 +1,4 @@
 import express from 'express'
-// import mongoose from 'mongoose'
 import {getLatLongByUrl, getWeatherByUrl, utils as u} from './utils.js';
 
 import {fileURLToPath} from 'url';
